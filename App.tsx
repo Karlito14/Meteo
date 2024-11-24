@@ -1,6 +1,6 @@
 import { Home } from './pages/Home';
 import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
-import background from '@assets/background.png';
+const background = require('@assets/background.png');
 
 export default function App() {
   return (

@@ -1,4 +1,6 @@
-const PARIS_LOCATION = {
+import { LocationObject } from "expo-location";
+
+const PARIS_LOCATION: LocationObject = {
   timestamp: Date.now(),
   coords: {
     accuracy: null,
