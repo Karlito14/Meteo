@@ -8,7 +8,7 @@ class MeteoAPI {
     this.url = url;
   }
 
-  async getWeather(location: LocationObject) {
+  async fetchWeather(location: LocationObject) {
     const response = await fetch(
       `${this.url}latitude=${location.coords.latitude}&longitude=${location.coords.longitude}&daily=weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max&timezone=auto&current_weather=true`
     );

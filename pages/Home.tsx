@@ -17,9 +17,9 @@ export const Home = () => {
     setLocation(coords);
   };
 
-  const fetchWeather = async (location: LocationObject) => {
+  const getWeather = async (location: LocationObject) => {
     try {
-      const weatherResponse: IWeather = await newMeteoAPI.getWeather(location);
+      const weatherResponse: IWeather = await newMeteoAPI.fetchWeather(location);
       setWeather(weatherResponse);
     } catch (error) {
       console.error(error);
@@ -32,7 +32,7 @@ export const Home = () => {
 
   useEffect(() => {
     if (location) {
-      fetchWeather(location);
+      getWeather(location);
     }
   }, [location]);
 
