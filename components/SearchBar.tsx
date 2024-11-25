@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Txt } from './Txt';
 
 export const SearchBar = () => {
   return (
     <View style={styles.container}>
-      <Text>Search Bar</Text>
+      <Txt>Search Bar</Txt>
     </View>
   );
 };

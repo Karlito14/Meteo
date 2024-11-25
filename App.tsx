@@ -1,17 +1,20 @@
 import { Home } from './pages/Home';
 import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
-const background = require('@assets/background.png');
+import { useFonts } from 'expo-font';
+const background = require('@assets/images/background.png');
 
 export default function App() {
+  const [loaded, error] = useFonts({
+    'Alata-Regular': require('./assets/fonts/Alata-Regular.ttf'),
+  });
+
   return (
     <ImageBackground
       source={background}
       style={styles.background}
       imageStyle={styles.img}
     >
-      <SafeAreaView style={styles.container}>
-        <Home />
-      </SafeAreaView>
+      <SafeAreaView style={styles.container}>{loaded && <Home />}</SafeAreaView>
     </ImageBackground>
   );
 }

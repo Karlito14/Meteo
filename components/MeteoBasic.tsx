@@ -1,9 +1,10 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Txt } from './Txt';
 
 export const MeteoBasic = () => {
   return (
     <View style={styles.container}>
-      <Text>Meteo Basic</Text>
+      <Txt>Meteo Basic</Txt>
     </View>
   );
 };
