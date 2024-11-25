@@ -4,7 +4,7 @@ import {
   getCurrentPositionAsync,
 } from 'expo-location';
 
-async function getCurrentLocation() {
+const getCurrentLocation = async () => {
   let { status } = await requestForegroundPermissionsAsync();
   if (status !== 'granted') {
     return PARIS_LOCATION;
@@ -12,6 +12,6 @@ async function getCurrentLocation() {
 
   let location = await getCurrentPositionAsync({});
   return location;
-}
+};
 
 export { getCurrentLocation };
