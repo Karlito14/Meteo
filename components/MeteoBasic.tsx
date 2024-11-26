@@ -1,6 +1,7 @@
 import { View, StyleSheet, Image, ImageSourcePropType } from 'react-native';
 import { Txt } from './Txt';
 import { IMeteoBasic } from 'interfaces/interfaces';
+import { Clock } from './Clock';
 
 export const MeteoBasic = ({
   temperature,
@@ -10,7 +11,7 @@ export const MeteoBasic = ({
   return (
     <View style={styles.container}>
       <View style={styles.contentClock}>
-        <Txt>Clock</Txt>
+        <Clock />
       </View>
       <Txt>{city}</Txt>
       {interpretation && <Txt style={styles.label}>{interpretation.label}</Txt>}

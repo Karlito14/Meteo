@@ -15,8 +15,19 @@ const getCurrentLocation = async () => {
 };
 
 const getWeatherInterpretation = (code: number) => {
-  const result = WEATHER_INTERPRATIONS.find((item) => item.codes.includes(code));
+  const result = WEATHER_INTERPRATIONS.find((item) =>
+    item.codes.includes(code)
+  );
   return result;
 };
 
-export { getCurrentLocation, getWeatherInterpretation };
+const displayClock = () => {
+  const date = new Date();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  return `${hours < 10 ? `0${hours}` : hours}:${
+    minutes < 10 ? `0${minutes}` : minutes
+  }`;
+};
+
+export { getCurrentLocation, getWeatherInterpretation, displayClock };

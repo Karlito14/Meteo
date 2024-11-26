@@ -1,4 +1,4 @@
-import { ImageSourcePropType } from "react-native";
+import { ImageSourcePropType } from 'react-native';
 interface IWeather {
   current_weather: CurrentWeather;
   current_weather_units: CurrentWeatherUnits;
@@ -50,7 +50,7 @@ interface DailyUnits {
 interface IMeteoBasic {
   temperature: string;
   city: string;
-  interpretation: IWeatherInterpretation |undefined
+  interpretation: IWeatherInterpretation | undefined;
 }
 
 interface IWeatherInterpretation {
