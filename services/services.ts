@@ -1,4 +1,4 @@
-import { PARIS_LOCATION } from '@constants';
+import { PARIS_LOCATION, WEATHER_INTERPRATIONS } from '@constants';
 import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
@@ -14,4 +14,9 @@ const getCurrentLocation = async () => {
   return location;
 };
 
-export { getCurrentLocation };
+const getWeatherInterpretation = (code: number) => {
+  const result = WEATHER_INTERPRATIONS.find((item) => item.codes.includes(code));
+  return result;
+};
+
+export { getCurrentLocation, getWeatherInterpretation };

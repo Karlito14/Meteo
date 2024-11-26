@@ -1,4 +1,5 @@
-export interface IWeather {
+import { ImageSourcePropType } from "react-native";
+interface IWeather {
   current_weather: CurrentWeather;
   current_weather_units: CurrentWeatherUnits;
   daily: Daily;
@@ -11,7 +12,6 @@ export interface IWeather {
   timezone_abbreviation: string;
   utc_offset_seconds: number;
 }
-
 interface CurrentWeather {
   interval: number;
   is_day: number;
@@ -21,7 +21,6 @@ interface CurrentWeather {
   winddirection: number;
   windspeed: number;
 }
-
 interface CurrentWeatherUnits {
   interval: string;
   is_day: string;
@@ -31,7 +30,6 @@ interface CurrentWeatherUnits {
   winddirection: string;
   windspeed: string;
 }
-
 interface Daily {
   sunrise: string[];
   sunset: string[];
@@ -40,7 +38,6 @@ interface Daily {
   weathercode: number[];
   windspeed_10m_max: number[];
 }
-
 interface DailyUnits {
   sunrise: string;
   sunset: string;
@@ -49,3 +46,17 @@ interface DailyUnits {
   weathercode: string;
   windspeed_10m_max: string;
 }
+
+interface IMeteoBasic {
+  temperature: string;
+  city: string;
+  interpretation: IWeatherInterpretation |undefined
+}
+
+interface IWeatherInterpretation {
+  codes: number[];
+  label: string;
+  image: ImageSourcePropType;
+}
+
+export { IWeather, IMeteoBasic, IWeatherInterpretation };
