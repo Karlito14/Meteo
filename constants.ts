@@ -1,5 +1,5 @@
 import { LocationObject } from 'expo-location';
-import { IWeatherInterpretation } from 'interfaces/interfaces';
+import { IWeatherInterpretation } from '@interfaces/interfaces';
 
 const PARIS_LOCATION: LocationObject = {
   timestamp: Date.now(),

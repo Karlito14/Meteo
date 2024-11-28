@@ -1,5 +1,5 @@
 import { LocationObject } from 'expo-location';
-import { ICity, IWeather } from 'interfaces/interfaces';
+import { ICity, IWeather } from '@interfaces/interfaces';
 
 class MeteoAPI {
   url: string;

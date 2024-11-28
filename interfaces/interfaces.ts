@@ -52,13 +52,16 @@ interface IMeteoBasic {
   city: string;
   interpretation: IWeatherInterpretation | undefined;
 }
-
+interface IMeteoAdvanced {
+  sunrise: string[];
+  sunset: string[];
+  windspeed: number;
+}
 interface IWeatherInterpretation {
   codes: number[];
   label: string;
   image: ImageSourcePropType;
 }
-
 interface ICity {
   address: Address;
   addresstype: string;
@@ -76,7 +79,6 @@ interface ICity {
   place_rank: number;
   type: string;
 }
-
 interface Address {
   'ISO3166-2-lvl4': string;
   'ISO3166-2-lvl6': string;
@@ -91,4 +93,4 @@ interface Address {
   town: string;
 }
 
-export { IWeather, IMeteoBasic, IWeatherInterpretation, ICity };
+export { IWeather, IMeteoBasic, IMeteoAdvanced, IWeatherInterpretation, ICity };

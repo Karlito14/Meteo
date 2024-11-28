@@ -9,8 +9,7 @@ import {
   getWeatherInterpretation,
 } from 'services/services';
 import { meteoApiReverse, newMeteoAPI } from 'api/meteo';
-import { ICity, IWeather, IWeatherInterpretation } from 'interfaces/interfaces';
-import { WEATHER_INTERPRATIONS } from '@constants';
+import { IWeather } from '@interfaces/interfaces';
 
 export const Home = () => {
   const [location, setLocation] = useState<LocationObject | null>(null);
@@ -70,7 +69,13 @@ export const Home = () => {
         />
       ) : null}
       <SearchBar />
-      <MeteoAdvanced />
+      {weather && (
+        <MeteoAdvanced
+          sunset={weather.daily.sunset}
+          sunrise={weather.daily.sunrise}
+          windspeed={weather.current_weather.windspeed}
+        />
+      )}
     </View>
   );
 };

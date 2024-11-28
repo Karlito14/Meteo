@@ -1,10 +1,23 @@
 import { View, StyleSheet } from 'react-native';
-import { Txt } from './Txt';
+import { ItemAdvanced } from './ItemAdvanced';
+import { IMeteoAdvanced } from '@interfaces/interfaces';
 
-export const MeteoAdvanced = () => {
+export const MeteoAdvanced = ({
+  sunrise,
+  sunset,
+  windspeed,
+}: IMeteoAdvanced) => {
+  const dusk = sunrise[0].split('T')[1];
+  const down = sunset[0].split('T')[1];
+
   return (
     <View style={styles.container}>
-      <Txt style={styles.text}>Meteo Advanced</Txt>
+      <ItemAdvanced value={dusk} label="Aube" />
+      <ItemAdvanced value={down} label="Crépuscule" />
+      <ItemAdvanced
+        value={windspeed.toFixed().toString() + ' km/h'}
+        label="Vent"
+      />
     </View>
   );
 };
@@ -12,6 +25,13 @@ export const MeteoAdvanced = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    borderRadius: 15,
+    justifyContent: 'space-evenly',
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderColor: 'white',
+    borderWidth: 3,
   },
 
   text: {
