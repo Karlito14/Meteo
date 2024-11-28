@@ -1,5 +1,5 @@
 import { LocationObject } from 'expo-location';
-import { IWeather } from 'interfaces/interfaces';
+import { ICity, IWeather } from 'interfaces/interfaces';
 
 class MeteoAPI {
   url: string;
@@ -15,8 +15,20 @@ class MeteoAPI {
     const data: Promise<IWeather> = response.json();
     return data;
   }
+
+  async fetchCity(location: LocationObject) {
+    const response = await fetch(
+      `${this.url}format=json&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
+    );
+    const data: Promise<ICity> = response.json();
+    return data;
+  }
 }
 
-export const newMeteoAPI = new MeteoAPI(
-  'https://api.open-meteo.com/v1/forecast?'
+const newMeteoAPI = new MeteoAPI('https://api.open-meteo.com/v1/forecast?');
+
+const meteoApiReverse = new MeteoAPI(
+  'https://nominatim.openstreetmap.org/reverse?'
 );
+
+export { newMeteoAPI, meteoApiReverse };

@@ -59,4 +59,36 @@ interface IWeatherInterpretation {
   image: ImageSourcePropType;
 }
 
-export { IWeather, IMeteoBasic, IWeatherInterpretation };
+interface ICity {
+  address: Address;
+  addresstype: string;
+  boundingbox: string[];
+  class: string;
+  display_name: string;
+  importance: number;
+  lat: string;
+  licence: string;
+  lon: string;
+  name: string;
+  osm_id: number;
+  osm_type: string;
+  place_id: number;
+  place_rank: number;
+  type: string;
+}
+
+interface Address {
+  'ISO3166-2-lvl4': string;
+  'ISO3166-2-lvl6': string;
+  country: string;
+  country_code: string;
+  county: string;
+  municipality: string;
+  postcode: string;
+  region: string;
+  road: string;
+  state: string;
+  town: string;
+}
+
+export { IWeather, IMeteoBasic, IWeatherInterpretation, ICity };

@@ -8,13 +8,14 @@ import {
   getCurrentLocation,
   getWeatherInterpretation,
 } from 'services/services';
-import { newMeteoAPI } from 'api/meteo';
-import { IWeather, IWeatherInterpretation } from 'interfaces/interfaces';
+import { meteoApiReverse, newMeteoAPI } from 'api/meteo';
+import { ICity, IWeather, IWeatherInterpretation } from 'interfaces/interfaces';
 import { WEATHER_INTERPRATIONS } from '@constants';
 
 export const Home = () => {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [weather, setWeather] = useState<IWeather | null>(null);
+  const [city, setCity] = useState<string | null>(null);
 
   const getCoords = async () => {
     const coords = await getCurrentLocation();
@@ -32,6 +33,18 @@ export const Home = () => {
     }
   };
 
+  const getCity = async (location: LocationObject) => {
+    try {
+      const cityResponse = await meteoApiReverse.fetchCity(location);
+      const {
+        address: { municipality, town },
+      } = cityResponse;
+      setCity(town || municipality);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getCoords();
   }, []);
@@ -39,6 +52,7 @@ export const Home = () => {
   useEffect(() => {
     if (location) {
       getWeather(location);
+      getCity(location);
     }
   }, [location]);
 
@@ -46,13 +60,15 @@ export const Home = () => {
 
   return (
     <View style={styles.container}>
-      {weather && (
+      {weather && city ? (
         <MeteoBasic
           temperature={weather.current_weather.temperature.toFixed()}
-          city="Paris"
-          interpretation={getWeatherInterpretation(weather.current_weather.weathercode)}
+          city={city}
+          interpretation={getWeatherInterpretation(
+            weather.current_weather.weathercode
+          )}
         />
-      )}
+      ) : null}
       <SearchBar />
       <MeteoAdvanced />
     </View>
