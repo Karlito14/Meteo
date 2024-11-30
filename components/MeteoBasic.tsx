@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, ImageSourcePropType } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Txt } from './Txt';
 import { IMeteoBasic } from '@interfaces/interfaces';
 import { Clock } from './Clock';

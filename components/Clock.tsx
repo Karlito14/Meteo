@@ -9,7 +9,7 @@ export const Clock = () => {
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTime(displayClock());
-    });
+    }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
