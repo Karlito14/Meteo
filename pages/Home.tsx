@@ -1,20 +1,33 @@
+import { useEffect, useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useNavigation } from '@react-navigation/native';
+import { meteoApiReverse, newMeteoAPI } from 'api/meteo';
+import { Container } from '@components/Container';
 import { MeteoAdvanced } from '@components/MeteoAdvanced';
 import { MeteoBasic } from '@components/MeteoBasic';
 import { SearchBar } from '@components/SearchBar';
-import { StyleSheet, View } from 'react-native';
 import { LocationObject } from 'expo-location';
-import { useEffect, useState } from 'react';
 import {
   getCurrentLocation,
   getWeatherInterpretation,
 } from 'services/services';
-import { meteoApiReverse, newMeteoAPI } from 'api/meteo';
-import { IWeather } from '@interfaces/interfaces';
+import { IForecast, IWeather } from '@interfaces/interfaces';
+
+type RootStackParamList = {
+  Forecast: IForecast;
+};
+
+type NavigationProps = NativeStackNavigationProp<
+  RootStackParamList,
+  'Forecast'
+>;
 
 export const Home = () => {
   const [location, setLocation] = useState<LocationObject | null>(null);
   const [weather, setWeather] = useState<IWeather | null>(null);
   const [city, setCity] = useState<string | null>(null);
+  const navigation = useNavigation<NavigationProps>();
 
   const getCoords = async () => {
     const coords = await getCurrentLocation();
@@ -44,6 +57,12 @@ export const Home = () => {
     }
   };
 
+  const displayForecastPage = () => {
+    if (weather && city) {
+      navigation.navigate('Forecast', { city, daily: weather.daily });
+    }
+  };
+
   useEffect(() => {
     getCoords();
   }, []);
@@ -58,25 +77,28 @@ export const Home = () => {
   console.log(weather);
 
   return (
-    <View style={styles.container}>
-      {weather && city ? (
-        <MeteoBasic
-          temperature={weather.current_weather.temperature.toFixed()}
-          city={city}
-          interpretation={getWeatherInterpretation(
-            weather.current_weather.weathercode
-          )}
-        />
-      ) : null}
-      <SearchBar />
-      {weather && (
-        <MeteoAdvanced
-          sunset={weather.daily.sunset}
-          sunrise={weather.daily.sunrise}
-          windspeed={weather.current_weather.windspeed}
-        />
-      )}
-    </View>
+    <Container>
+      <View style={styles.container}>
+        {weather && city ? (
+          <MeteoBasic
+            temperature={weather.current_weather.temperature.toFixed()}
+            city={city}
+            interpretation={getWeatherInterpretation(
+              weather.current_weather.weathercode
+            )}
+            onPress={displayForecastPage}
+          />
+        ) : null}
+        <SearchBar />
+        {weather && (
+          <MeteoAdvanced
+            sunset={weather.daily.sunset}
+            sunrise={weather.daily.sunrise}
+            windspeed={weather.current_weather.windspeed}
+          />
+        )}
+      </View>
+    </Container>
   );
 };
 

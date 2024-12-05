@@ -51,6 +51,7 @@ interface IMeteoBasic {
   temperature: string;
   city: string;
   interpretation: IWeatherInterpretation | undefined;
+  onPress: () => void;
 }
 interface IMeteoAdvanced {
   sunrise: string[];
@@ -93,4 +94,16 @@ interface Address {
   town: string;
 }
 
-export { IWeather, IMeteoBasic, IMeteoAdvanced, IWeatherInterpretation, ICity };
+interface IForecast {
+  city: string;
+  daily: Daily;
+}
+
+export {
+  IWeather,
+  IMeteoBasic,
+  IMeteoAdvanced,
+  IWeatherInterpretation,
+  ICity,
+  IForecast,
+};

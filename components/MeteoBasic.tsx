@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { Txt } from './Txt';
 import { IMeteoBasic } from '@interfaces/interfaces';
 import { Clock } from './Clock';
@@ -7,6 +7,7 @@ export const MeteoBasic = ({
   temperature,
   city,
   interpretation,
+  onPress,
 }: IMeteoBasic) => {
   return (
     <View style={styles.container}>
@@ -16,7 +17,9 @@ export const MeteoBasic = ({
       <Txt>{city}</Txt>
       {interpretation && <Txt style={styles.label}>{interpretation.label}</Txt>}
       <View style={styles.contentTemp}>
-        <Txt style={styles.temp}>{temperature + '°'}</Txt>
+        <TouchableOpacity onPress={onPress}>
+          <Txt style={styles.temp}>{temperature + '°'}</Txt>
+        </TouchableOpacity>
         {interpretation && (
           <Image style={styles.img} source={interpretation.image} />
         )}
