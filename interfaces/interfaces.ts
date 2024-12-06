@@ -93,10 +93,20 @@ interface Address {
   state: string;
   town: string;
 }
-
 interface IForecast {
   city: string;
   daily: Daily;
+}
+
+type RootStackParamList = {
+  Forecast: IForecast;
+};
+
+interface IForecastitem {
+  image: ImageSourcePropType;
+  day: string;
+  date: string;
+  temp: number;
 }
 
 export {
@@ -105,5 +115,6 @@ export {
   IMeteoAdvanced,
   IWeatherInterpretation,
   ICity,
-  IForecast,
+  IForecastitem,
+  RootStackParamList,
 };

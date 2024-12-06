@@ -12,11 +12,7 @@ import {
   getCurrentLocation,
   getWeatherInterpretation,
 } from 'services/services';
-import { IForecast, IWeather } from '@interfaces/interfaces';
-
-type RootStackParamList = {
-  Forecast: IForecast;
-};
+import { IWeather, RootStackParamList } from '@interfaces/interfaces';
 
 type NavigationProps = NativeStackNavigationProp<
   RootStackParamList,
