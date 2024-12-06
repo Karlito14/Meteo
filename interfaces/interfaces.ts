@@ -103,7 +103,7 @@ type RootStackParamList = {
 };
 
 interface IForecastitem {
-  image: ImageSourcePropType;
+  image: ImageSourcePropType | undefined;
   day: string;
   date: string;
   temp: number;

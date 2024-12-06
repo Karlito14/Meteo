@@ -1,9 +1,11 @@
 import { Container } from '@components/Container';
 import { ForecastItem } from '@components/ForecastItem';
 import { Txt } from '@components/Txt';
+import { DAYS } from '@constants';
 import { RootStackParamList } from '@interfaces/interfaces';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import { getWeatherInterpretation } from 'services/services';
 
 type ForecastRouteProp = RouteProp<RootStackParamList, 'Forecast'>;
 
@@ -29,17 +31,34 @@ export const Forecast = () => {
     </View>
   );
 
+  const forecastList = (
+    <View>
+      {params.daily.time.map((time, index) => {
+        const date = time.split('-').reverse().join('-');
+        const image = getWeatherInterpretation(
+          params.daily.weathercode[index]
+        )?.image;
+        const temp = params.daily.temperature_2m_max[index];
+        const day = new Date(time).getDay();
+
+        console.log(day);
+
+        return (
+          <ForecastItem
+            key={time}
+            image={image}
+            day={DAYS[day]}
+            date={date}
+            temp={temp}
+          />
+        );
+      })}
+    </View>
+  );
+
   return (
     <Container>
-      {header}
-      <View>
-        <ForecastItem
-          image={require('@assets/images/clouds.png')}
-          day="VEN"
-          date="06-12-2024"
-          temp={20}
-        />
-      </View>
+      {header} {forecastList}
     </Container>
   );
 };

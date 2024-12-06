@@ -42,4 +42,6 @@ const WEATHER_INTERPRATIONS: IWeatherInterpretation[] = [
   },
 ];
 
-export { PARIS_LOCATION, WEATHER_INTERPRATIONS };
+const DAYS = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'];
+
+export { PARIS_LOCATION, WEATHER_INTERPRATIONS, DAYS };

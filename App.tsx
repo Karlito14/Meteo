@@ -1,20 +1,29 @@
 import { Home } from './pages/Home';
 import { useFonts } from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, Theme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Forecast } from '@pages/Forecast';
 
 const Stack = createNativeStackNavigator();
-const navTheme = {
+const fonts = {
+  regular: 'Alata-Regular',
+  medium: 'Alata-Regular',
+  bold: 'Alata-Bold',
+  heavy: 'Alata-Bold',
+};
+
+const navTheme: Theme = {
+  dark: false,
   colors: {
     background: 'transparent',
+    primary: 'transparent',
+    card: 'transparent',
+    text: 'transparent',
+    border: 'transparent',
+    notification: 'transparent',
   },
-  dark: false,
-  fonts: {
-    body: 'Alata-Regular',
-    heading: 'Alata-Regular',
-    monospace: 'Alata-Regular',
-  },
+  // Ajout des polices personnalisées
+  fonts,
 };
 
 export default function App() {
