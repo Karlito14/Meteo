@@ -37,11 +37,9 @@ export const Forecast = () => {
         const date = time.split('-').reverse().join('-');
         const image = getWeatherInterpretation(
           params.daily.weathercode[index]
-        )?.image;
+        )?.image!;
         const temp = params.daily.temperature_2m_max[index];
         const day = new Date(time).getDay();
-
-        console.log(day);
 
         return (
           <ForecastItem

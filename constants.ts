@@ -1,5 +1,6 @@
 import { LocationObject } from 'expo-location';
 import { IWeatherInterpretation } from '@interfaces/interfaces';
+import { Theme } from '@react-navigation/native';
 
 const PARIS_LOCATION: LocationObject = {
   timestamp: Date.now(),
@@ -44,4 +45,25 @@ const WEATHER_INTERPRATIONS: IWeatherInterpretation[] = [
 
 const DAYS = ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'];
 
-export { PARIS_LOCATION, WEATHER_INTERPRATIONS, DAYS };
+const FONTS = {
+  regular: 'Alata-Regular',
+  medium: 'Alata-Regular',
+  bold: 'Alata-Bold',
+  heavy: 'Alata-Bold',
+};
+
+const NAV_THEME: Theme = {
+  dark: false,
+  colors: {
+    background: 'transparent',
+    primary: 'transparent',
+    card: 'transparent',
+    text: 'transparent',
+    border: 'transparent',
+    notification: 'transparent',
+  },
+  // Ajout des polices personnalisées
+  fonts: FONTS,
+};
+
+export { PARIS_LOCATION, WEATHER_INTERPRATIONS, DAYS, NAV_THEME };

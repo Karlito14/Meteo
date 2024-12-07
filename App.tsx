@@ -3,28 +3,9 @@ import { useFonts } from 'expo-font';
 import { NavigationContainer, Theme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Forecast } from '@pages/Forecast';
+import { NAV_THEME } from '@constants';
 
 const Stack = createNativeStackNavigator();
-const fonts = {
-  regular: 'Alata-Regular',
-  medium: 'Alata-Regular',
-  bold: 'Alata-Bold',
-  heavy: 'Alata-Bold',
-};
-
-const navTheme: Theme = {
-  dark: false,
-  colors: {
-    background: 'transparent',
-    primary: 'transparent',
-    card: 'transparent',
-    text: 'transparent',
-    border: 'transparent',
-    notification: 'transparent',
-  },
-  // Ajout des polices personnalisées
-  fonts,
-};
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -32,7 +13,7 @@ export default function App() {
   });
 
   return (
-    <NavigationContainer theme={navTheme}>
+    <NavigationContainer theme={NAV_THEME}>
       {loaded && (
         <Stack.Navigator
           screenOptions={{ headerShown: false, animation: 'fade' }}
