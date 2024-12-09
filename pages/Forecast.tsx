@@ -22,9 +22,9 @@ export const Forecast = () => {
   );
 
   const header = (
-    <View style={styles.container}>
+    <View style={styles.container_header}>
       {backButton}
-      <View style={styles.content}>
+      <View style={styles.content_header}>
         <Txt>{params.city}</Txt>
         <Txt style={styles.subtitle}>Prévisions de la semaine</Txt>
       </View>
@@ -32,7 +32,7 @@ export const Forecast = () => {
   );
 
   const forecastList = (
-    <View>
+    <View style={styles.container_list}>
       {params.daily.time.map((time, index) => {
         const date = time.split('-').reverse().join('-');
         const image = getWeatherInterpretation(
@@ -62,13 +62,13 @@ export const Forecast = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  container_header: {
     flexDirection: 'row',
   },
   button: {
     width: 30,
   },
-  content: {
+  content_header: {
     flex: 1,
     alignItems: 'center',
     marginRight: 30,
@@ -77,4 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 20,
   },
+  container_list: {
+    marginTop: 20
+  }
 });
