@@ -27,6 +27,7 @@ export const Home = () => {
   const [location, setLocation] = useState<IPosition | null>(null);
   const [weather, setWeather] = useState<IWeather | null>(null);
   const [city, setCity] = useState<string | null>(null);
+  const [errorCity, setErrorCity] = useState<boolean>(false);
   const navigation = useNavigation<NavigationProps>();
 
   const getCoords = async () => {
@@ -37,9 +38,11 @@ export const Home = () => {
   const getCoordsByCity = async (city: string) => {
     try {
       const coords = await geocodingAPI.fetchCoords(city);
+      setErrorCity(false);
       setLocation(coords);
     } catch (error) {
-      console.error(error);
+      //console.error(error);
+      setErrorCity(true);
     }
   };
 
@@ -76,7 +79,6 @@ export const Home = () => {
 
   useEffect(() => {
     if (location) {
-      console.log(location)
       getWeather(location);
       getCity(location);
     }
@@ -95,7 +97,7 @@ export const Home = () => {
             onPress={displayForecastPage}
           />
         ) : null}
-        <SearchBar onSubmit={getCoordsByCity} />
+        <SearchBar onSubmit={getCoordsByCity} error={errorCity} />
         {weather && (
           <MeteoAdvanced
             sunset={weather.daily.sunset}

@@ -1,9 +1,12 @@
 import { StyleSheet, TextInput, View } from 'react-native';
+import { Txt } from './Txt';
 
 export const SearchBar = ({
   onSubmit,
+  error,
 }: {
   onSubmit: (city: string) => void;
+  error: boolean;
 }) => {
   return (
     <View style={styles.container}>
@@ -13,6 +16,9 @@ export const SearchBar = ({
         placeholder="Cherche une ville"
         returnKeyType="done"
       />
+      {error && (
+        <Txt style={styles.error}>Nous n'avons pas trouvé ta ville</Txt>
+      )}
     </View>
   );
 };
@@ -23,9 +29,9 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
     borderRadius: 20,
     padding: 10,
+    marginBottom: 10,
     paddingLeft: 20,
     backgroundColor: 'white',
     fontFamily: 'Alata-Regular',
@@ -38,5 +44,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
 
     elevation: 5,
+  },
+  error: {
+    color: '#d70000',
+    fontSize: 20,
   },
 });

@@ -13,8 +13,6 @@ export const Forecast = () => {
   const { params } = useRoute<ForecastRouteProp>();
   const navigation = useNavigation();
 
-  console.log(params);
-
   const backButton = (
     <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
       <Txt>{'<'}</Txt>
