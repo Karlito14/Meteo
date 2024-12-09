@@ -83,6 +83,7 @@ interface ICity {
 interface Address {
   'ISO3166-2-lvl4': string;
   'ISO3166-2-lvl6': string;
+  city: string;
   country: string;
   country_code: string;
   county: string;
@@ -109,6 +110,35 @@ interface IForecastitem {
   temp: number;
 }
 
+interface ICoords {
+  results: Coords[];
+  generationtime_ms: number;
+}
+
+interface Coords {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  elevation: number;
+  feature_code: string;
+  country_code: string;
+  admin1_id: number;
+  admin2_id: number;
+  timezone: string;
+  population: number;
+  postcodes: string[];
+  country_id: number;
+  country: string;
+  admin1: string;
+  admin2: string;
+}
+
+interface IPosition {
+  latitude: number;
+  longitude: number;
+}
+
 export {
   IWeather,
   IMeteoBasic,
@@ -117,4 +147,6 @@ export {
   ICity,
   IForecastitem,
   RootStackParamList,
+  ICoords,
+  IPosition,
 };

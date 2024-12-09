@@ -1,13 +1,17 @@
 import { StyleSheet, TextInput, View } from 'react-native';
-import { Txt } from './Txt';
 
-export const SearchBar = ({ onSubmit }: { onSubmit: () => void }) => {
+export const SearchBar = ({
+  onSubmit,
+}: {
+  onSubmit: (city: string) => void;
+}) => {
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        onSubmitEditing={onSubmit}
+        onSubmitEditing={(e) => onSubmit(e.nativeEvent.text)}
         placeholder="Cherche une ville"
+        returnKeyType="done"
       />
     </View>
   );
